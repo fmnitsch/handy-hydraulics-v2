@@ -1,0 +1,19 @@
+.calc-selector {
+    margin-left: 80px;
+    margin-top: 60px;
+    display: inline-block;
+}
+
+.calc-header {
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 40px;
+}
+
+.calc-list {
+    list-style: none;
+    font-size: 22px;
+    line-height: 150%;
+    cursor: pointer;
+}
+
