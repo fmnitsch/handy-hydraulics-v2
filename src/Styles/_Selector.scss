@@ -5,13 +5,13 @@
   transform: translateX(0%);
 }
 .calc-selector {
-  padding: 2rem 1.5rem 0rem 5rem;
+  padding: 2rem 2rem 0rem 2rem;
   transition: all 0.5s ease;
   position: fixed;
   top: 10rem;
   left: 0;
   height: 100%;
-  width: 22rem;
+  width: 18rem;
   box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.15);
 
   .close-wrapper {
@@ -57,5 +57,11 @@
     list-style: none;
     font-size: 1.25rem;
     cursor: pointer;
+  }
+}
+
+@media only screen and (max-height: 800px) {
+  .calc-selector {
+    top: 4rem;
   }
 }
