@@ -50,13 +50,22 @@ h5 {
 }
 
 .title {
+  position: sticky;
+  top: 0;
+  height: 11rem;
   padding: 3rem 0rem 2rem 5rem;
   background-color: rgb(5, 5, 73);
   color: white;
 }
 
-#calculators {
+.calculators {
   display: flex;
+  position: relative;
+  min-height: 100%;
+}
+
+.selector-active {
+  margin-left: 22rem;
 }
 
 @import "./Calculators";

@@ -1,33 +1,61 @@
-.calc-selector-container {
-  p {
-    padding: 5rem 2rem 0rem 5rem;
-    display: block;
-  }
-  .visible {
-    transform: translateX(0%);
-  }
-  .calc-selector {
-    padding: 5rem;
-    // transform: translateX(-100%);
-    // transition: all 0.5s ease;
+.hide {
+  transform: translateX(-100%);
+}
+.show {
+  transform: translateX(0%);
+}
+.calc-selector {
+  padding: 2rem 1.5rem 0rem 5rem;
+  transition: all 0.5s ease;
+  position: fixed;
+  top: 10rem;
+  left: 0;
+  height: 100%;
+  width: 22rem;
+  box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.15);
 
-    .selector {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 1rem 0.5rem;
-      border-radius: 10px;
-    }
+  .close-wrapper {
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: flex-end;
 
-    .calc-header {
-      margin-bottom: 2rem;
-      padding-left: 0.5rem;
-    }
-
-    .calc-list {
-      list-style: none;
-      font-size: 1.25rem;
+    img {
+      position: relative;
+      width: 1rem;
+      height: 1rem;
       cursor: pointer;
+      filter: invert(15%) sepia(15%) saturate(7473%) hue-rotate(230deg)
+        brightness(83%) contrast(136%);
     }
+  }
+
+  .selector {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem 0.5rem;
+    color: rgb(5, 5, 73);
+    &:hover {
+      background: rgba(5, 5, 73, 0.3);
+      color: white;
+      font-weight: bold;
+    }
+  }
+
+  .active {
+    background: rgb(5, 5, 73);
+    color: white;
+    font-weight: bold;
+  }
+
+  .calc-header {
+    margin-bottom: 2rem;
+    padding-left: 0.5rem;
+  }
+
+  .calc-list {
+    list-style: none;
+    font-size: 1.25rem;
+    cursor: pointer;
   }
 }

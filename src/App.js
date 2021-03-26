@@ -7,37 +7,30 @@ import CalcContainer from "./Components/calculators/calc-container";
 function App() {
   //State
   const [calcDisplay, setCalcDisplay] = useState(null);
+  const [selector, setSelector] = useState(false);
 
   //Refs
   const calcScreenRef = useRef(null);
-
-  const select = (e) => {
-    const selectors = [
-      document.getElementById("elev-press"),
-      document.getElementById("orif-dis"),
-      document.getElementById("pipe-vol"),
-      document.getElementById("sprink-dis"),
-      document.getElementById("press-loss"),
-    ];
-
-    selectors.forEach((element) => {
-      element.style.backgroundColor = "revert";
-    });
-
-    e.target.style.backgroundColor = "#FFFFFF";
-    setCalcDisplay(`${e.target.id}`);
-  };
+  const calcScreen2Ref = useRef(null);
 
   return (
     <div id="App">
       <div className="title">
         <h1>Handy Hydraulics</h1>
       </div>
-      <div id="calculators">
-        <Selector select={select} />
+      <div className="calculators">
+        <Selector
+          selector={selector}
+          setSelector={setSelector}
+          calcDisplay={calcDisplay}
+          setCalcDisplay={setCalcDisplay}
+        />
         <CalcContainer
           calcDisplay={calcDisplay}
           calcScreenRef={calcScreenRef}
+          calcScreen2Ref={calcScreen2Ref}
+          selector={selector}
+          setSelector={setSelector}
         />
       </div>
     </div>

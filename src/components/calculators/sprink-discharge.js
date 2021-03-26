@@ -4,6 +4,7 @@ function SprinklerDischarge({ clear, calcScreenRef, ready, setReady }) {
   // Refs
   const kRef = useRef(null);
   const pressPSIRef = useRef(null);
+  const refsArray = [kRef, pressPSIRef];
 
   // Calculation
   const sprinklerDischarge = (k, pressPSI) => {
@@ -25,6 +26,7 @@ function SprinklerDischarge({ clear, calcScreenRef, ready, setReady }) {
       +kRef.current.value,
       +pressPSIRef.current.value
     );
+    calcScreenRef.current.classList.add("active");
     calcScreenRef.current.innerHTML = `<span>${result.toFixed(1)} gpm</span>`;
   };
 
@@ -32,7 +34,7 @@ function SprinklerDischarge({ clear, calcScreenRef, ready, setReady }) {
     <section className="calculator">
       <h2>Sprinkler Discharge</h2>
       <div className="calc-screen" ref={calcScreenRef}>
-        <span>0</span>
+        <span></span>
       </div>
       <div className="inputs-container">
         <label htmlFor="k">K:</label>
@@ -59,7 +61,7 @@ function SprinklerDischarge({ clear, calcScreenRef, ready, setReady }) {
         >
           Calculate
         </button>
-        <button onClick={clear} className="clear">
+        <button onClick={() => clear(refsArray)} className="clear">
           Clear
         </button>
       </div>

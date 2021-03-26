@@ -1,17 +1,31 @@
 import { useRef, useState } from "react";
 
-function PressureLoss({ clear, calcScreenRef, ready, setReady }) {
+function PressureLoss({
+  clear,
+  calcScreenRef,
+  ready,
+  setReady,
+  calcScreen2Ref,
+}) {
   // State for second calculator
   const [readyCalc2, setReadyCalc2] = useState(false);
 
   // Refs
-  const calcScreen2Ref = useRef(null);
   const qDischargeRef = useRef(null);
   const plLengthRef = useRef(null);
   const plDiamRef = useRef(null);
   const cRef = useRef(null);
   const pDischargeRef = useRef(null);
   const elevAddRef = useRef(null);
+  const refsArray1 = [qDischargeRef, plLengthRef, plDiamRef, cRef];
+  const refsArray2 = [pDischargeRef, elevAddRef];
+
+  // Clear for second calc
+  const clearCalc2 = (inputs) => {
+    inputs.forEach((field) => (field.current.value = ""));
+    calcScreen2Ref.current.classList.remove("active");
+    calcScreen2Ref.current.innerHTML = "<span></span>";
+  };
 
   // Calculators
   const frictionLoss = (qDischarge, plLength, plDiam, c) => {
@@ -62,6 +76,7 @@ function PressureLoss({ clear, calcScreenRef, ready, setReady }) {
       +plDiamRef.current.value,
       +cRef.current.value
     );
+    calcScreenRef.current.classList.add("active");
     calcScreenRef.current.innerHTML = `<span>${result.toFixed(4)} psi</span>`;
   };
 
@@ -78,6 +93,7 @@ function PressureLoss({ clear, calcScreenRef, ready, setReady }) {
       +pDischargeRef.current.value,
       +elevAddRef.current.value
     );
+    calcScreen2Ref.current.classList.add("active");
     calcScreen2Ref.current.innerHTML = `<span>${result.toFixed(3)} psi</span>`;
   };
 
@@ -89,7 +105,7 @@ function PressureLoss({ clear, calcScreenRef, ready, setReady }) {
         <div id="fric-loss-calc">
           <h2>Friction loss</h2>
           <div className="calc-screen" ref={calcScreenRef}>
-            <span>0</span>
+            <span></span>
           </div>
           <div className="inputs-container">
             <table>
@@ -156,7 +172,7 @@ function PressureLoss({ clear, calcScreenRef, ready, setReady }) {
             >
               Calculate
             </button>
-            <button onClick={clear} className="clear">
+            <button onClick={() => clear(refsArray1)} className="clear">
               Clear
             </button>
           </div>
@@ -165,7 +181,7 @@ function PressureLoss({ clear, calcScreenRef, ready, setReady }) {
         <div id="p-supp-calc">
           <h2>P-supp</h2>
           <div className="calc-screen" ref={calcScreen2Ref}>
-            <span>0</span>
+            <span></span>
           </div>
           <div className="inputs-container">
             <label htmlFor="p-discharge">P-discharge (psi):</label>
@@ -192,7 +208,7 @@ function PressureLoss({ clear, calcScreenRef, ready, setReady }) {
             >
               Calculate
             </button>
-            <button onClick={clear} className="clear">
+            <button onClick={() => clearCalc2(refsArray2)} className="clear">
               Clear
             </button>
           </div>

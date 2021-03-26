@@ -3,6 +3,7 @@ import { useRef } from "react";
 function ElevationPressure({ clear, calcScreenRef, ready, setReady }) {
   // Refs
   const heightRef = useRef(null);
+  const refsArray = [heightRef];
 
   // Calculator
   const elevationPressure = (height) => {
@@ -18,6 +19,7 @@ function ElevationPressure({ clear, calcScreenRef, ready, setReady }) {
   const onClick = () => {
     if (ready) {
       let result = elevationPressure(+heightRef.current.value);
+      calcScreenRef.current.classList.add("active");
       calcScreenRef.current.innerHTML = `<span>${result.toFixed(3)} psi</span>`;
     } else {
       return;
@@ -28,7 +30,7 @@ function ElevationPressure({ clear, calcScreenRef, ready, setReady }) {
     <section className="calculator">
       <h2>Elevation pressure</h2>
       <div className="calc-screen" ref={calcScreenRef}>
-        <span>0</span>
+        <span></span>
       </div>
       <div className="inputs-container">
         <label htmlFor="height">Height (ft):</label>
@@ -46,7 +48,7 @@ function ElevationPressure({ clear, calcScreenRef, ready, setReady }) {
         >
           Calculate
         </button>
-        <button onClick={clear} className="clear">
+        <button onClick={() => clear(refsArray)} className="clear">
           Clear
         </button>
       </div>

@@ -5,6 +5,7 @@ function OrificeDischarge({ clear, calcScreenRef, ready, setReady }) {
   const orificeRef = useRef(null);
   const cFactRef = useRef(null);
   const psiRef = useRef(null);
+  const refsArray = [orificeRef, cFactRef, psiRef];
 
   // Calculator
   const orificeDischarge = (orifice, cFact, psi) => {
@@ -31,6 +32,7 @@ function OrificeDischarge({ clear, calcScreenRef, ready, setReady }) {
       +cFactRef.current.value,
       +psiRef.current.value
     );
+    calcScreenRef.current.classList.add("active");
     calcScreenRef.current.innerHTML = `<span>${result} gpm</span>`;
   };
 
@@ -38,7 +40,7 @@ function OrificeDischarge({ clear, calcScreenRef, ready, setReady }) {
     <section className="calculator">
       <h2>Orifice Discharge</h2>
       <div className="calc-screen" ref={calcScreenRef}>
-        <span>0</span>
+        <span></span>
       </div>
       <div className="inputs-container">
         <label htmlFor="orifice">Orifice (in):</label>
@@ -74,7 +76,7 @@ function OrificeDischarge({ clear, calcScreenRef, ready, setReady }) {
         >
           Calculate
         </button>
-        <button onClick={clear} className="clear">
+        <button onClick={() => clear(refsArray)} className="clear">
           Clear
         </button>
       </div>

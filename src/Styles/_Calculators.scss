@@ -1,95 +1,122 @@
-.calculator {
-  min-width: 300px;
-  border-radius: 10px;
-  background-color: #dfdfdf;
-  margin: 4rem 0rem 4rem 4rem;
-  padding: 20px;
-  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.15);
-  h2 {
-    padding: 1rem 0rem;
+.calc-container {
+  padding: 4rem 0rem 4rem 4rem;
+  transition: all 0.5s ease;
+
+  hr {
+    height: 2px;
+    background-color: rgba(126, 126, 126, 0.7);
+    border: none;
   }
 
-  .calc-screen {
-    background-color: #e3ff00;
-    width: 100%;
-    margin: 1rem auto;
-    padding: 1rem 0.5rem;
-    font-size: 3rem;
-    border: 1px solid #a8a8a8;
-    border-radius: 10px;
-  }
-
-  .inputs-container {
-    margin-top: 3rem;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 320px;
-    input {
-      padding: 0.5rem;
-      border-radius: 0.2rem;
-      margin: 1rem 0.4rem;
-      border: none;
-      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-    }
-  }
-
-  button {
+  .toggle-calcs {
+    border: none;
+    color: rgb(5, 5, 73);
     padding: 1rem;
-    margin: 0rem 1rem 0rem 0rem;
-    background-color: #e3ff00;
-    border-radius: 10px;
     font-size: 1rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    border: 1px solid #a8a8a8;
-
-    transition: all 0.5s ease;
+    background: rgba(0, 0, 0, 0);
     cursor: pointer;
     &:hover {
-      background-color: #545f01;
-      color: white;
+      font-weight: bold;
     }
   }
+  .calculator {
+    min-width: 300px;
+    border-radius: 10px;
+    background-color: #dfdfdf;
+    padding: 20px;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.15);
+    h2 {
+      padding: 1rem 0rem;
+    }
 
-  .inactive {
-    color: #dfdfdf;
-    background-color: #f4ffa4;
-    &:hover {
+    .calc-screen {
+      background: #545f01;
+      width: 100%;
+      margin: 1rem auto;
+      padding: 1rem 0.5rem;
+      min-height: 5.2rem;
+      font-size: 3rem;
+      border: 1px solid #a8a8a8;
+      border-radius: 10px;
+    }
+
+    .active {
+      background: #e3ff00;
+    }
+
+    .inputs-container {
+      margin-top: 3rem;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 320px;
+      input {
+        padding: 0.5rem;
+        border-radius: 0.2rem;
+        margin: 1rem 0.4rem;
+        border: none;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    button {
+      padding: 1rem;
+      margin: 0rem 1rem 0rem 0rem;
+      background-color: #e3ff00;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      border: 1px solid #a8a8a8;
+
+      transition: all 0.5s ease;
+      cursor: pointer;
+      &:hover {
+        background-color: #545f01;
+        color: white;
+      }
+    }
+
+    .inactive {
+      color: #636363;
       background-color: #f4ffa4;
-      color: #dfdfdf;
+      font-weight: lighter;
+      &:hover {
+        background-color: #f4ffa4;
+        color: #636363;
+      }
     }
-  }
 
-  .clear {
-    background-color: white;
-    color: #df6961;
-    transition: all 0.5s ease;
-    font-weight: lighter;
-    &:hover {
-      background-color: #df6961;
-      color: white;
-      font-weight: bolder;
+    .clear {
+      background-color: white;
+      color: #df6961;
+      transition: all 0.5s ease;
+      font-weight: lighter;
+      &:hover {
+        background-color: #df6961;
+        color: white;
+        font-weight: bolder;
+      }
     }
-  }
 
-  #double-calc-container {
-    display: flex;
-    padding-top: 1rem;
-  }
+    #double-calc-container {
+      display: flex;
+      padding-top: 1rem;
+    }
 
-  #fric-loss-calc {
-    display: inline;
-    width: 300;
-    overflow-wrap: normal;
-    padding: 0rem 1rem 0rem 0rem;
-    border-right: 1px solid rgba(192, 192, 192, 0.5);
-  }
+    #fric-loss-calc {
+      display: inline;
+      width: 300;
+      overflow-wrap: normal;
+      padding: 0rem 1rem 0rem 0rem;
+      border-right: 1px solid rgba(126, 126, 126, 0.7);
+    }
 
-  #p-supp-calc {
-    display: inline;
-    width: 300;
-    overflow-wrap: normal;
-    padding: 0rem 0rem 0rem 1rem;
-    border-left: 1px solid rgba(192, 192, 192, 0.5);
+    #p-supp-calc {
+      display: inline;
+      width: 300;
+      overflow-wrap: normal;
+      padding: 0rem 0rem 0rem 1rem;
+      border-left: 1px solid rgba(126, 126, 126, 0.7);
+    }
   }
 }

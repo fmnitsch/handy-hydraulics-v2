@@ -4,6 +4,7 @@ function PipeVolume({ clear, calcScreenRef, ready, setReady }) {
   // Refs
   const pvDiamRef = useRef(null);
   const pvLengthRef = useRef(null);
+  const refsArray = [pvDiamRef, pvLengthRef];
 
   // Calculator
   const pipeVolume = (pvDiam, pvLength) => {
@@ -25,6 +26,7 @@ function PipeVolume({ clear, calcScreenRef, ready, setReady }) {
       +pvDiamRef.current.value,
       pvLengthRef.current.value
     );
+    calcScreenRef.current.classList.add("active");
     calcScreenRef.current.innerHTML = `<span>${result.toFixed(
       3
     )} U.S. Gal</span>`;
@@ -34,7 +36,7 @@ function PipeVolume({ clear, calcScreenRef, ready, setReady }) {
     <section className="calculator">
       <h2>Pipe Volume</h2>
       <div className="calc-screen" ref={calcScreenRef}>
-        <span>0</span>
+        <span></span>
       </div>
       <div className="inputs-container">
         <label htmlFor="PV-diam">Diameter (in):</label>
@@ -61,7 +63,7 @@ function PipeVolume({ clear, calcScreenRef, ready, setReady }) {
         >
           Calculate
         </button>
-        <button onClick={clear} className="clear">
+        <button onClick={() => clear(refsArray)} className="clear">
           Clear
         </button>
       </div>
