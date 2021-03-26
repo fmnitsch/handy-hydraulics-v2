@@ -1,20 +1,36 @@
-import './selector.css'
+import { useRef } from "react";
 
-function Selector(props) {
-    
-    return (
-        <section className='calc-selector'>
-        <h2 className='calc-header'>Calculators:</h2>
-            <div className='calc-list'>
-                <p id='elev-press' onClick={props.changeCalc}>Elevation pressure</p>
-                <p id='orif-dis' onClick={props.changeCalc}>Orifice discharge</p>
-                <p id='pipe-vol' onClick={props.changeCalc}>Pipe volume</p>
-                <p id='sprink-dis' onClick={props.changeCalc}>Sprinkler discharge</p>
-                <p id='press-loss' onClick={props.changeCalc}>Pressure loss</p>
-            </div>
-        </section>
-    )
-
+function Selector({ select }) {
+  const calcSelectRef = useRef(null);
+  const handleSeeCalcsClick = () => {
+    calcSelectRef.current.classList.add("visible");
+    console.log(calcSelectRef.current.classList);
+  };
+  return (
+    <div className="calc-selector-container">
+      <p onClick={handleSeeCalcsClick}>See calculators</p>
+      <section className="calc-selector" ref={calcSelectRef}>
+        <h3 className="calc-header">Calculators:</h3>
+        <ul className="calc-list">
+          <li className="selector" id="elev-press" onClick={select}>
+            Elevation pressure
+          </li>
+          <li className="selector" id="orif-dis" onClick={select}>
+            Orifice discharge
+          </li>
+          <li className="selector" id="pipe-vol" onClick={select}>
+            Pipe volume
+          </li>
+          <li className="selector" id="sprink-dis" onClick={select}>
+            Sprinkler discharge
+          </li>
+          <li className="selector" id="press-loss" onClick={select}>
+            Pressure loss
+          </li>
+        </ul>
+      </section>
+    </div>
+  );
 }
 
 export default Selector;

@@ -1,41 +1,76 @@
-import './calculators.css';
-import ElevationPressure from './elev-pressure';
-import OrificeDischarge from './orif-discharge';
-import PipeVolume from './pipe-volume';
-import PressureLoss from './press-loss';
-import SprinklerDischarge from './sprink-discharge'
+import { useState } from "react";
+// Calculators
+import ElevationPressure from "./elev-pressure";
+import OrificeDischarge from "./orif-discharge";
+import PipeVolume from "./pipe-volume";
+import PressureLoss from "./press-loss";
+import SprinklerDischarge from "./sprink-discharge";
 
-function CalcContainer(props) {
+function CalcContainer({ calcDisplay, calcScreenRef }) {
+  // State
+  const [ready, setReady] = useState(false);
 
-    if(props.calcDisplay === 'elev-press') {
-        return (
-            <ElevationPressure />
-        );
-    }; 
+  const clear = () => {
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach((field) => (field.value = ""));
+    calcScreenRef.current.innerHTML = "<span>0</span>";
+  };
 
-    if(props.calcDisplay === 'orif-dis') {
-        return (
-            <OrificeDischarge />
-        );
-    }; 
+  if (calcDisplay === "elev-press") {
+    return (
+      <ElevationPressure
+        clear={clear}
+        calcScreenRef={calcScreenRef}
+        ready={ready}
+        setReady={setReady}
+      />
+    );
+  } else if (calcDisplay === "orif-dis") {
+    return (
+      <OrificeDischarge
+        clear={clear}
+        calcScreenRef={calcScreenRef}
+        ready={ready}
+        setReady={setReady}
+      />
+    );
+  } else if (calcDisplay === "pipe-vol") {
+    return (
+      <PipeVolume
+        clear={clear}
+        calcScreenRef={calcScreenRef}
+        ready={ready}
+        setReady={setReady}
+      />
+    );
+  } else if (calcDisplay === "sprink-dis") {
+    return (
+      <SprinklerDischarge
+        clear={clear}
+        calcScreenRef={calcScreenRef}
+        ready={ready}
+        setReady={setReady}
+      />
+    );
+  } else if (calcDisplay === "press-loss") {
+    return (
+      <PressureLoss
+        clear={clear}
+        calcScreenRef={calcScreenRef}
+        ready={ready}
+        setReady={setReady}
+      />
+    );
+  } else {
+    return (
+      <ElevationPressure
+        clear={clear}
+        calcScreenRef={calcScreenRef}
+        ready={ready}
+        setReady={setReady}
+      />
+    );
+  }
+}
 
-    if(props.calcDisplay === 'pipe-vol') {
-        return (
-            <PipeVolume />
-        );
-    }; 
-
-    if(props.calcDisplay === 'sprink-dis') {
-        return (
-            <SprinklerDischarge />
-        );
-    }; 
-
-    if(props.calcDisplay === 'press-loss') {
-        return (
-            <PressureLoss />
-        );
-    }; 
-};
-
-export default CalcContainer
+export default CalcContainer;

@@ -1,31 +1,70 @@
-import './calculators.css';
-import Calculators from '../../util/operations';
+import { useRef } from "react";
 
-function SprinklerDischarge() {
+function SprinklerDischarge({ clear, calcScreenRef, ready, setReady }) {
+  // Refs
+  const kRef = useRef(null);
+  const pressPSIRef = useRef(null);
 
-    const onClick = () => {
-        Calculators.sprinklerDischarge();
+  // Calculation
+  const sprinklerDischarge = (k, pressPSI) => {
+    return Math.sqrt(pressPSI) * k;
+  };
+
+  // Input handler
+  const prepCalculator = () => {
+    if (kRef.current.value && pressPSIRef.current.value) {
+      setReady(true);
+    } else {
+      setReady(false);
     }
+  };
 
-    return (
-        <section id='calculator'>
-            <h2>Sprinkler Discharge</h2>
-            <div className='calc-screen' id='calc-screen'>
-                <span>0</span>
-            </div>
-            <div className='inputs-container'>
-                <label htmlFor="k">K:</label>
-                <br></br>
-                <input id="k" name="k" className='input'/>
-                <br></br>
-                <label htmlFor="pressure-psi">Pressure (psi):</label>
-                <br></br>
-                <input id="pressure-psi" name="pressure-psi" className='input'/>
-                <br></br>
-                <button className='calc-button' id='calc-button' onClick={onClick}>Calculate!</button>
-            </div>
-        </section>
-    )
+  // Click Handler
+  const onClick = () => {
+    const result = sprinklerDischarge(
+      +kRef.current.value,
+      +pressPSIRef.current.value
+    );
+    calcScreenRef.current.innerHTML = `<span>${result.toFixed(1)} gpm</span>`;
+  };
+
+  return (
+    <section className="calculator">
+      <h2>Sprinkler Discharge</h2>
+      <div className="calc-screen" ref={calcScreenRef}>
+        <span>0</span>
+      </div>
+      <div className="inputs-container">
+        <label htmlFor="k">K:</label>
+        <br></br>
+        <input
+          ref={kRef}
+          name="k"
+          className="input"
+          onChange={prepCalculator}
+        />
+        <br></br>
+        <label htmlFor="pressure-psi">Pressure (psi):</label>
+        <br></br>
+        <input
+          ref={pressPSIRef}
+          name="pressure-psi"
+          className="input"
+          onChange={prepCalculator}
+        />
+        <br></br>
+        <button
+          className={`calc-button ${ready ? "" : "inactive"}`}
+          onClick={onClick}
+        >
+          Calculate
+        </button>
+        <button onClick={clear} className="clear">
+          Clear
+        </button>
+      </div>
+    </section>
+  );
 }
 
 export default SprinklerDischarge;
