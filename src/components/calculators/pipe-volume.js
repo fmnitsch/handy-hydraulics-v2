@@ -46,6 +46,7 @@ function PipeVolume({ clear, calcScreenRef, ready, setReady, calcButtonRef }) {
         <label htmlFor="PV-diam">Diameter (in):</label>
         <br></br>
         <input
+          type="number"
           ref={pvDiamRef}
           name="PV-diam"
           className="input"
@@ -55,6 +56,7 @@ function PipeVolume({ clear, calcScreenRef, ready, setReady, calcButtonRef }) {
         <label htmlFor="PV-length">Length (ft):</label>
         <br></br>
         <input
+          type="number"
           ref={pvLengthRef}
           name="PV-length"
           className="input"
@@ -68,7 +70,10 @@ function PipeVolume({ clear, calcScreenRef, ready, setReady, calcButtonRef }) {
         >
           Calculate
         </button>
-        <button onClick={() => clear(refsArray)} className="clear">
+        <button
+          onClick={() => clear(refsArray)}
+          className={`clear ${ready ? "" : "clear-inactive"}`}
+        >
           Clear
         </button>
       </div>

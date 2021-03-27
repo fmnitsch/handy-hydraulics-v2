@@ -50,6 +50,7 @@ function SprinklerDischarge({
         <label htmlFor="k">K:</label>
         <br></br>
         <input
+          type="number"
           ref={kRef}
           name="k"
           className="input"
@@ -59,6 +60,7 @@ function SprinklerDischarge({
         <label htmlFor="pressure-psi">Pressure (psi):</label>
         <br></br>
         <input
+          type="number"
           ref={pressPSIRef}
           name="pressure-psi"
           className="input"
@@ -72,7 +74,10 @@ function SprinklerDischarge({
         >
           Calculate
         </button>
-        <button onClick={() => clear(refsArray)} className="clear">
+        <button
+          onClick={() => clear(refsArray)}
+          className={`clear ${ready ? "" : "clear-inactive"}`}
+        >
           Clear
         </button>
       </div>

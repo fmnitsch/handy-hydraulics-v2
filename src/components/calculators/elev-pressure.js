@@ -42,6 +42,7 @@ function ElevationPressure({
         <label htmlFor="height">Height (ft):</label>
         <br></br>
         <input
+          type="number"
           ref={heightRef}
           name="height"
           className="input"

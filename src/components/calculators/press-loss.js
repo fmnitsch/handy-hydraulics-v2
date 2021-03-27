@@ -129,6 +129,7 @@ function PressureLoss({
                   </td>
                   <td>
                     <input
+                      type="number"
                       ref={qDischargeRef}
                       name="q-discharge"
                       className="input"
@@ -142,6 +143,7 @@ function PressureLoss({
                   </td>
                   <td>
                     <input
+                      type="number"
                       ref={plLengthRef}
                       name="PL-length"
                       className="input"
@@ -155,6 +157,7 @@ function PressureLoss({
                   </td>
                   <td>
                     <input
+                      type="number"
                       ref={plDiamRef}
                       name="PL-diam"
                       className="input"
@@ -168,6 +171,7 @@ function PressureLoss({
                   </td>
                   <td>
                     <input
+                      type="number"
                       ref={cRef}
                       name="c"
                       className="input"
@@ -186,7 +190,10 @@ function PressureLoss({
             >
               Calculate
             </button>
-            <button onClick={() => clear(refsArray1)} className="clear">
+            <button
+              onClick={() => clear(refsArray1)}
+              className={`clear ${ready ? "" : "clear-inactive"}`}
+            >
               Clear
             </button>
           </div>
@@ -200,6 +207,7 @@ function PressureLoss({
           <div className="inputs-container">
             <label htmlFor="p-discharge">P-discharge (psi):</label>
             <input
+              type="number"
               ref={pDischargeRef}
               name="p-discharge"
               className="input"
@@ -208,6 +216,7 @@ function PressureLoss({
             <br></br>
             <label htmlFor="elev-add">Elevation add (ft):</label>
             <input
+              type="number"
               ref={elevAddRef}
               name="elev-add"
               className="input"
@@ -223,7 +232,10 @@ function PressureLoss({
             >
               Calculate
             </button>
-            <button onClick={() => clearCalc2(refsArray2)} className="clear">
+            <button
+              onClick={() => clearCalc2(refsArray2)}
+              className={`clear ${readyCalc2 ? "" : "clear-inactive"}`}
+            >
               Clear
             </button>
           </div>

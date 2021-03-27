@@ -56,6 +56,7 @@ function OrificeDischarge({
         <label htmlFor="orifice">Orifice (in):</label>
         <br></br>
         <input
+          type="number"
           ref={orificeRef}
           name="orifice"
           className="input"
@@ -65,6 +66,7 @@ function OrificeDischarge({
         <label htmlFor="cfact">C-fact.:</label>
         <br></br>
         <input
+          type="number"
           ref={cFactRef}
           name="cfact"
           className="input"
@@ -74,6 +76,7 @@ function OrificeDischarge({
         <label htmlFor="psi">PSI:</label>
         <br></br>
         <input
+          type="number"
           ref={psiRef}
           name="psi"
           className="input"
@@ -87,7 +90,10 @@ function OrificeDischarge({
         >
           Calculate
         </button>
-        <button onClick={() => clear(refsArray)} className="clear">
+        <button
+          onClick={() => clear(refsArray)}
+          className={`clear ${ready ? "" : "clear-inactive"}`}
+        >
           Clear
         </button>
       </div>
