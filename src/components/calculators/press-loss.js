@@ -6,6 +6,8 @@ function PressureLoss({
   ready,
   setReady,
   calcScreen2Ref,
+  calcButtonRef,
+  calcButton2Ref,
 }) {
   // State for second calculator
   const [readyCalc2, setReadyCalc2] = useState(false);
@@ -25,6 +27,7 @@ function PressureLoss({
     inputs.forEach((field) => (field.current.value = ""));
     calcScreen2Ref.current.classList.remove("active");
     calcScreen2Ref.current.innerHTML = "<span></span>";
+    setReadyCalc2(false);
   };
 
   // Calculators
@@ -70,31 +73,41 @@ function PressureLoss({
 
   // Click Handlers
   const onClickFricLoss = () => {
-    const result = frictionLoss(
-      +qDischargeRef.current.value,
-      +plLengthRef.current.value,
-      +plDiamRef.current.value,
-      +cRef.current.value
-    );
-    calcScreenRef.current.classList.add("active");
-    calcScreenRef.current.innerHTML = `<span>${result.toFixed(4)} psi</span>`;
+    if (ready) {
+      const result = frictionLoss(
+        +qDischargeRef.current.value,
+        +plLengthRef.current.value,
+        +plDiamRef.current.value,
+        +cRef.current.value
+      );
+      calcScreenRef.current.classList.add("active");
+      calcScreenRef.current.innerHTML = `<span>${result.toFixed(4)} psi</span>`;
+    } else {
+      return;
+    }
   };
 
   const onClickPSupp = () => {
-    const fricLoss = frictionLoss(
-      +qDischargeRef.current.value,
-      +plLengthRef.current.value,
-      +plDiamRef.current.value,
-      +cRef.current.value
-    );
+    if (readyCalc2) {
+      const fricLoss = frictionLoss(
+        +qDischargeRef.current.value,
+        +plLengthRef.current.value,
+        +plDiamRef.current.value,
+        +cRef.current.value
+      );
 
-    const result = pSuppPsi(
-      +fricLoss,
-      +pDischargeRef.current.value,
-      +elevAddRef.current.value
-    );
-    calcScreen2Ref.current.classList.add("active");
-    calcScreen2Ref.current.innerHTML = `<span>${result.toFixed(3)} psi</span>`;
+      const result = pSuppPsi(
+        +fricLoss,
+        +pDischargeRef.current.value,
+        +elevAddRef.current.value
+      );
+      calcScreen2Ref.current.classList.add("active");
+      calcScreen2Ref.current.innerHTML = `<span>${result.toFixed(
+        3
+      )} psi</span>`;
+    } else {
+      return;
+    }
   };
 
   return (
@@ -169,6 +182,7 @@ function PressureLoss({
               className={`calc-button ${ready ? "" : "inactive"}`}
               id="calc-friction-loss"
               onClick={onClickFricLoss}
+              ref={calcButtonRef}
             >
               Calculate
             </button>
@@ -205,6 +219,7 @@ function PressureLoss({
               className={`calc-button ${readyCalc2 ? "" : "inactive"}`}
               id="calc-pSupp-psi"
               onClick={onClickPSupp}
+              ref={calcButton2Ref}
             >
               Calculate
             </button>

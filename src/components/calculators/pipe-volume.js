@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-function PipeVolume({ clear, calcScreenRef, ready, setReady }) {
+function PipeVolume({ clear, calcScreenRef, ready, setReady, calcButtonRef }) {
   // Refs
   const pvDiamRef = useRef(null);
   const pvLengthRef = useRef(null);
@@ -22,14 +22,18 @@ function PipeVolume({ clear, calcScreenRef, ready, setReady }) {
 
   // Click Handler
   const onClick = () => {
-    const result = pipeVolume(
-      +pvDiamRef.current.value,
-      pvLengthRef.current.value
-    );
-    calcScreenRef.current.classList.add("active");
-    calcScreenRef.current.innerHTML = `<span>${result.toFixed(
-      3
-    )} U.S. Gal</span>`;
+    if (ready) {
+      const result = pipeVolume(
+        +pvDiamRef.current.value,
+        pvLengthRef.current.value
+      );
+      calcScreenRef.current.classList.add("active");
+      calcScreenRef.current.innerHTML = `<span>${result.toFixed(
+        3
+      )} U.S. Gal</span>`;
+    } else {
+      return;
+    }
   };
 
   return (
@@ -60,6 +64,7 @@ function PipeVolume({ clear, calcScreenRef, ready, setReady }) {
         <button
           className={`calc-button ${ready ? "" : "inactive"}`}
           onClick={onClick}
+          ref={calcButtonRef}
         >
           Calculate
         </button>

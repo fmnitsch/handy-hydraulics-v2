@@ -7,11 +7,13 @@ import CalcContainer from "./Components/calculators/calc-container";
 function App() {
   //State
   const [calcDisplay, setCalcDisplay] = useState(null);
-  const [selector, setSelector] = useState(false);
+  const [selector, setSelector] = useState(true);
 
   //Refs
   const calcScreenRef = useRef(null);
   const calcScreen2Ref = useRef(null);
+  const calcButtonRef = useRef(null);
+  const calcButton2Ref = useRef(null);
 
   return (
     <div id="App">
@@ -31,6 +33,8 @@ function App() {
           calcScreen2Ref={calcScreen2Ref}
           selector={selector}
           setSelector={setSelector}
+          calcButtonRef={calcButtonRef}
+          calcButton2Ref={calcButton2Ref}
         />
       </div>
     </div>

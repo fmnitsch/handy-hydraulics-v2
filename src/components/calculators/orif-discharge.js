@@ -1,6 +1,12 @@
 import { useRef } from "react";
 
-function OrificeDischarge({ clear, calcScreenRef, ready, setReady }) {
+function OrificeDischarge({
+  clear,
+  calcScreenRef,
+  ready,
+  setReady,
+  calcButtonRef,
+}) {
   // Refs
   const orificeRef = useRef(null);
   const cFactRef = useRef(null);
@@ -27,13 +33,17 @@ function OrificeDischarge({ clear, calcScreenRef, ready, setReady }) {
 
   // Click handler
   const onClick = () => {
-    const result = orificeDischarge(
-      +orificeRef.current.value,
-      +cFactRef.current.value,
-      +psiRef.current.value
-    );
-    calcScreenRef.current.classList.add("active");
-    calcScreenRef.current.innerHTML = `<span>${result} gpm</span>`;
+    if (ready) {
+      const result = orificeDischarge(
+        +orificeRef.current.value,
+        +cFactRef.current.value,
+        +psiRef.current.value
+      );
+      calcScreenRef.current.classList.add("active");
+      calcScreenRef.current.innerHTML = `<span>${result} gpm</span>`;
+    } else {
+      return;
+    }
   };
 
   return (
@@ -73,6 +83,7 @@ function OrificeDischarge({ clear, calcScreenRef, ready, setReady }) {
         <button
           className={`calc-button ${ready ? "" : "inactive"}`}
           onClick={onClick}
+          ref={calcButtonRef}
         >
           Calculate
         </button>

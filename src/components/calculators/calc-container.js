@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // Calculators
 import ElevationPressure from "./elev-pressure";
 import OrificeDischarge from "./orif-discharge";
@@ -12,6 +12,8 @@ function CalcContainer({
   calcScreen2Ref,
   selector,
   setSelector,
+  calcButtonRef,
+  calcButton2Ref,
 }) {
   // State
   const [ready, setReady] = useState(false);
@@ -21,6 +23,7 @@ function CalcContainer({
     inputs.forEach((field) => (field.current.value = ""));
     calcScreenRef.current.classList.remove("active");
     calcScreenRef.current.innerHTML = "<span></span>";
+    setReady(false);
   };
 
   // Click handler for calculator selector
@@ -28,10 +31,15 @@ function CalcContainer({
     setSelector(!selector);
   };
 
+  // Make sure calculate button is inactive on re-renders
+  useEffect(() => {
+    setReady(false);
+  }, [calcDisplay]);
+
   return (
     <div className={`calc-container ${selector ? "selector-active" : ""}`}>
       <button className="toggle-calcs" onClick={selectorToggle}>
-        See all calculators
+        All calculators
       </button>
       {calcDisplay === "elev-press" && (
         <ElevationPressure
@@ -39,6 +47,7 @@ function CalcContainer({
           calcScreenRef={calcScreenRef}
           ready={ready}
           setReady={setReady}
+          calcButtonRef={calcButtonRef}
         />
       )}
       {calcDisplay === "orif-dis" && (
@@ -47,6 +56,7 @@ function CalcContainer({
           calcScreenRef={calcScreenRef}
           ready={ready}
           setReady={setReady}
+          calcButtonRef={calcButtonRef}
         />
       )}
 
@@ -56,6 +66,7 @@ function CalcContainer({
           calcScreenRef={calcScreenRef}
           ready={ready}
           setReady={setReady}
+          calcButtonRef={calcButtonRef}
         />
       )}
 
@@ -65,6 +76,7 @@ function CalcContainer({
           calcScreenRef={calcScreenRef}
           ready={ready}
           setReady={setReady}
+          calcButtonRef={calcButtonRef}
         />
       )}
 
@@ -75,6 +87,8 @@ function CalcContainer({
           ready={ready}
           setReady={setReady}
           calcScreen2Ref={calcScreen2Ref}
+          calcButtonRef={calcButtonRef}
+          calcButton2Ref={calcButton2Ref}
         />
       )}
 
@@ -84,6 +98,7 @@ function CalcContainer({
           calcScreenRef={calcScreenRef}
           ready={ready}
           setReady={setReady}
+          calcButtonRef={calcButtonRef}
         />
       )}
     </div>

@@ -1,6 +1,12 @@
 import { useRef } from "react";
 
-function ElevationPressure({ clear, calcScreenRef, ready, setReady }) {
+function ElevationPressure({
+  clear,
+  calcScreenRef,
+  ready,
+  setReady,
+  calcButtonRef,
+}) {
   // Refs
   const heightRef = useRef(null);
   const refsArray = [heightRef];
@@ -45,10 +51,14 @@ function ElevationPressure({ clear, calcScreenRef, ready, setReady }) {
         <button
           className={`calc-button ${ready ? "" : "inactive"}`}
           onClick={onClick}
+          ref={calcButtonRef}
         >
           Calculate
         </button>
-        <button onClick={() => clear(refsArray)} className="clear">
+        <button
+          onClick={() => clear(refsArray)}
+          className={`clear ${ready ? "" : "clear-inactive"}`}
+        >
           Clear
         </button>
       </div>

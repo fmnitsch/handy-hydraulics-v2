@@ -1,6 +1,12 @@
 import { useRef } from "react";
 
-function SprinklerDischarge({ clear, calcScreenRef, ready, setReady }) {
+function SprinklerDischarge({
+  clear,
+  calcScreenRef,
+  ready,
+  setReady,
+  calcButtonRef,
+}) {
   // Refs
   const kRef = useRef(null);
   const pressPSIRef = useRef(null);
@@ -22,12 +28,16 @@ function SprinklerDischarge({ clear, calcScreenRef, ready, setReady }) {
 
   // Click Handler
   const onClick = () => {
-    const result = sprinklerDischarge(
-      +kRef.current.value,
-      +pressPSIRef.current.value
-    );
-    calcScreenRef.current.classList.add("active");
-    calcScreenRef.current.innerHTML = `<span>${result.toFixed(1)} gpm</span>`;
+    if (ready) {
+      const result = sprinklerDischarge(
+        +kRef.current.value,
+        +pressPSIRef.current.value
+      );
+      calcScreenRef.current.classList.add("active");
+      calcScreenRef.current.innerHTML = `<span>${result.toFixed(1)} gpm</span>`;
+    } else {
+      return;
+    }
   };
 
   return (
@@ -58,6 +68,7 @@ function SprinklerDischarge({ clear, calcScreenRef, ready, setReady }) {
         <button
           className={`calc-button ${ready ? "" : "inactive"}`}
           onClick={onClick}
+          ref={calcButtonRef}
         >
           Calculate
         </button>
