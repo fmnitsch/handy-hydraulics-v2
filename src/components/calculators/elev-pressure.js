@@ -34,7 +34,7 @@ function ElevationPressure({
 
   return (
     <section className="calculator">
-      <h2>Elevation pressure</h2>
+      <h2>Elevation Pressure</h2>
       <div className="calc-screen" ref={calcScreenRef}>
         <span></span>
       </div>

@@ -19,6 +19,7 @@ function App() {
     <div id="App">
       <div className="title">
         <h1>Handy Hydraulics</h1>
+        <p>A fire sprinkler hydraulics calculator</p>
       </div>
       <div className="calculators">
         <Selector

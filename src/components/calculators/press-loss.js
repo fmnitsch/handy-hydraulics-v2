@@ -112,11 +112,11 @@ function PressureLoss({
 
   return (
     <section className="calculator">
-      <h2>Pressure loss</h2>
+      <h2>Pressure Loss</h2>
       <hr></hr>
       <div id="double-calc-container">
         <div id="fric-loss-calc">
-          <h2>Friction loss</h2>
+          <h2>Friction Loss</h2>
           <div className="calc-screen" ref={calcScreenRef}>
             <span></span>
           </div>
@@ -200,7 +200,7 @@ function PressureLoss({
         </div>
         <div className="vl"></div>
         <div id="p-supp-calc">
-          <h2>P-supp</h2>
+          <h2>P-Supply</h2>
           <div className="calc-screen" ref={calcScreen2Ref}>
             <span></span>
           </div>
