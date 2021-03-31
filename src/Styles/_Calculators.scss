@@ -1,6 +1,9 @@
 .calc-container {
   padding: 4rem 0rem 4rem 5rem;
   transition: all 0.5s ease;
+  button {
+    font-size: 1rem;
+  }
 
   hr {
     height: 2px;
@@ -20,6 +23,7 @@
     }
   }
   .calculator {
+    min-width: 300px;
     border-radius: 10px;
     background-color: #dfdfdf;
     padding: 1.5rem;
@@ -43,18 +47,49 @@
       background: #e3ff00;
     }
 
+    .save-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      height: 1rem;
+      .save-button {
+        font-size: 0.8rem;
+        color: rgb(5, 5, 73);
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0);
+        border: none;
+        font-weight: lighter;
+        padding: 0;
+        margin: 0;
+        width: 10rem;
+        display: none;
+        &:hover {
+          font-weight: normal;
+        }
+      }
+      .save-active {
+        display: block;
+      }
+    }
+
     .inputs-container {
       margin-top: 3rem;
-      flex-wrap: wrap;
-      align-items: center;
-      width: 320px;
+      display: flex;
+      flex-direction: column;
       input {
         padding: 0.5rem;
         border-radius: 0.2rem;
-        margin: 1rem 0.4rem;
         border: none;
         box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
       }
+    }
+
+    .input-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.35);
+      padding: 0.5rem;
     }
 
     button {
@@ -114,18 +149,23 @@
 
     #fric-loss-calc {
       display: inline;
-      width: 300;
+
       overflow-wrap: normal;
       padding: 0rem 1rem 0rem 0rem;
       border-right: 1px solid rgba(126, 126, 126, 0.7);
+      input {
+        margin-left: 1rem;
+      }
     }
 
     #p-supp-calc {
       display: inline;
-      width: 300;
       overflow-wrap: normal;
       padding: 0rem 0rem 0rem 1rem;
       border-left: 1px solid rgba(126, 126, 126, 0.7);
+      input {
+        margin-left: 1rem;
+      }
     }
   }
 }

@@ -15,6 +15,10 @@ function CalcContainer({
   setSelector,
   calcButtonRef,
   calcButton2Ref,
+  saveButtonRef,
+  saveButton2Ref,
+  savedCalcs,
+  setSavedCalcs,
 }) {
   // State
   const [ready, setReady] = useState(false);
@@ -24,6 +28,7 @@ function CalcContainer({
     inputs.forEach((field) => (field.current.value = ""));
     calcScreenRef.current.classList.remove("active");
     calcScreenRef.current.innerHTML = "<span></span>";
+    saveButtonRef.current.classList.remove("save-active");
     setReady(false);
   };
 
@@ -49,6 +54,9 @@ function CalcContainer({
           ready={ready}
           setReady={setReady}
           calcButtonRef={calcButtonRef}
+          saveButtonRef={saveButtonRef}
+          savedCalcs={savedCalcs}
+          setSavedCalcs={setSavedCalcs}
         />
       )}
       {calcDisplay === "orif-dis" && (
@@ -58,6 +66,9 @@ function CalcContainer({
           ready={ready}
           setReady={setReady}
           calcButtonRef={calcButtonRef}
+          saveButtonRef={saveButtonRef}
+          savedCalcs={savedCalcs}
+          setSavedCalcs={setSavedCalcs}
         />
       )}
 
@@ -68,6 +79,9 @@ function CalcContainer({
           ready={ready}
           setReady={setReady}
           calcButtonRef={calcButtonRef}
+          saveButtonRef={saveButtonRef}
+          savedCalcs={savedCalcs}
+          setSavedCalcs={setSavedCalcs}
         />
       )}
 
@@ -78,6 +92,9 @@ function CalcContainer({
           ready={ready}
           setReady={setReady}
           calcButtonRef={calcButtonRef}
+          saveButtonRef={saveButtonRef}
+          savedCalcs={savedCalcs}
+          setSavedCalcs={setSavedCalcs}
         />
       )}
 
@@ -90,6 +107,10 @@ function CalcContainer({
           calcScreen2Ref={calcScreen2Ref}
           calcButtonRef={calcButtonRef}
           calcButton2Ref={calcButton2Ref}
+          saveButtonRef={saveButtonRef}
+          saveButton2Ref={saveButton2Ref}
+          savedCalcs={savedCalcs}
+          setSavedCalcs={setSavedCalcs}
         />
       )}
 
@@ -100,6 +121,9 @@ function CalcContainer({
           ready={ready}
           setReady={setReady}
           calcButtonRef={calcButtonRef}
+          saveButtonRef={saveButtonRef}
+          savedCalcs={savedCalcs}
+          setSavedCalcs={setSavedCalcs}
         />
       )}
     </div>

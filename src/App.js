@@ -3,17 +3,21 @@ import React, { useState, useRef } from "react";
 import "./Styles/App.scss";
 import Selector from "./Components/selector/selector";
 import CalcContainer from "./Components/calculators/calc-container";
+import SavedCalcs from "./Components/saved-calcs/saved-calcs";
 
 function App() {
   //State
   const [calcDisplay, setCalcDisplay] = useState(null);
   const [selector, setSelector] = useState(true);
+  const [savedCalcs, setSavedCalcs] = useState([]);
 
   //Refs
   const calcScreenRef = useRef(null);
   const calcScreen2Ref = useRef(null);
   const calcButtonRef = useRef(null);
   const calcButton2Ref = useRef(null);
+  const saveButtonRef = useRef(null);
+  const saveButton2Ref = useRef(null);
 
   return (
     <div id="App">
@@ -36,7 +40,12 @@ function App() {
           setSelector={setSelector}
           calcButtonRef={calcButtonRef}
           calcButton2Ref={calcButton2Ref}
+          saveButtonRef={saveButtonRef}
+          saveButton2Ref={saveButton2Ref}
+          savedCalcs={savedCalcs}
+          setSavedCalcs={setSavedCalcs}
         />
+        <SavedCalcs savedCalcs={savedCalcs} setSavedCalcs={setSavedCalcs} />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function OrificeDischarge({
   clear,
@@ -6,6 +7,9 @@ function OrificeDischarge({
   ready,
   setReady,
   calcButtonRef,
+  saveButtonRef,
+  savedCalcs,
+  setSavedCalcs,
 }) {
   // Refs
   const orificeRef = useRef(null);
@@ -31,7 +35,7 @@ function OrificeDischarge({
     }
   };
 
-  // Click handler
+  // Click handler for calculation
   const onClick = () => {
     if (ready) {
       const result = orificeDischarge(
@@ -41,9 +45,26 @@ function OrificeDischarge({
       );
       calcScreenRef.current.classList.add("active");
       calcScreenRef.current.innerHTML = `<span>${result} gpm</span>`;
+      saveButtonRef.current.classList.add("save-active");
     } else {
       return;
     }
+  };
+
+  // Click handler for saving calculation
+  const saveCalc = () => {
+    const calcInfo = {
+      calculation: "Orifice Discharge",
+      inputs: [
+        `Orifice (in): ${orificeRef.current.value}`,
+        `C-fact.: ${cFactRef.current.value}`,
+        `PSI: ${psiRef.current.value}`,
+      ],
+
+      output: calcScreenRef.current.innerText,
+      id: uuidv4(),
+    };
+    setSavedCalcs([...savedCalcs, calcInfo]);
   };
 
   return (
@@ -52,37 +73,44 @@ function OrificeDischarge({
       <div className="calc-screen" ref={calcScreenRef}>
         <span></span>
       </div>
+      <div className="save-wrapper">
+        <button className="save-button" ref={saveButtonRef} onClick={saveCalc}>
+          save this calculation
+        </button>
+      </div>
       <div className="inputs-container">
-        <label htmlFor="orifice">Orifice (in):</label>
-        <br></br>
-        <input
-          type="number"
-          ref={orificeRef}
-          name="orifice"
-          className="input"
-          onChange={prepCalculator}
-        />
-        <br></br>
-        <label htmlFor="cfact">C-fact.:</label>
-        <br></br>
-        <input
-          type="number"
-          ref={cFactRef}
-          name="cfact"
-          className="input"
-          onChange={prepCalculator}
-        />
-        <br></br>
-        <label htmlFor="psi">PSI:</label>
-        <br></br>
-        <input
-          type="number"
-          ref={psiRef}
-          name="psi"
-          className="input"
-          onChange={prepCalculator}
-        />
-        <br></br>
+        <div className="input-wrapper">
+          <label htmlFor="orifice">Orifice (in):</label>
+          <input
+            type="number"
+            ref={orificeRef}
+            name="orifice"
+            className="input"
+            onChange={prepCalculator}
+          />
+        </div>
+        <div className="input-wrapper">
+          <label htmlFor="cfact">C-fact.:</label>
+          <input
+            type="number"
+            ref={cFactRef}
+            name="cfact"
+            className="input"
+            onChange={prepCalculator}
+          />
+        </div>
+        <div className="input-wrapper">
+          <label htmlFor="psi">PSI:</label>
+          <input
+            type="number"
+            ref={psiRef}
+            name="psi"
+            className="input"
+            onChange={prepCalculator}
+          />
+        </div>
+      </div>
+      <div className="buttons-container">
         <button
           className={`calc-button ${ready ? "" : "inactive"}`}
           onClick={onClick}

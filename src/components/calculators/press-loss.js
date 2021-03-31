@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function PressureLoss({
   clear,
@@ -8,6 +9,10 @@ function PressureLoss({
   calcScreen2Ref,
   calcButtonRef,
   calcButton2Ref,
+  saveButtonRef,
+  saveButton2Ref,
+  savedCalcs,
+  setSavedCalcs,
 }) {
   // State for second calculator
   const [readyCalc2, setReadyCalc2] = useState(false);
@@ -27,6 +32,7 @@ function PressureLoss({
     inputs.forEach((field) => (field.current.value = ""));
     calcScreen2Ref.current.classList.remove("active");
     calcScreen2Ref.current.innerHTML = "<span></span>";
+    saveButton2Ref.current.classList.remove("save-active");
     setReadyCalc2(false);
   };
 
@@ -71,7 +77,7 @@ function PressureLoss({
     }
   };
 
-  // Click Handlers
+  // Click Handlers for calculations
   const onClickFricLoss = () => {
     if (ready) {
       const result = frictionLoss(
@@ -82,6 +88,7 @@ function PressureLoss({
       );
       calcScreenRef.current.classList.add("active");
       calcScreenRef.current.innerHTML = `<span>${result.toFixed(4)} psi</span>`;
+      saveButtonRef.current.classList.add("save-active");
     } else {
       return;
     }
@@ -105,9 +112,45 @@ function PressureLoss({
       calcScreen2Ref.current.innerHTML = `<span>${result.toFixed(
         3
       )} psi</span>`;
+      saveButton2Ref.current.classList.add("save-active");
     } else {
       return;
     }
+  };
+
+  // Click handlers for saving calculations
+  const saveCalc = () => {
+    const calcInfo = {
+      calculation: "Pipe Volume",
+      inputs: [
+        `Q-discharge (gpm): ${qDischargeRef.current.value}`,
+        `Length (ft): ${plLengthRef.current.value}`,
+        `Diameter (in): ${plDiamRef.current.value}`,
+        `C: ${cRef.current.value}`,
+      ],
+
+      output: calcScreenRef.current.innerText,
+      id: uuidv4(),
+    };
+    setSavedCalcs([...savedCalcs, calcInfo]);
+  };
+
+  const saveCalc2 = () => {
+    const calcInfo = {
+      calculation: "Pipe Volume",
+      inputs: [
+        `Q-discharge (gpm): ${qDischargeRef.current.value}`,
+        `Length (ft): ${plLengthRef.current.value}`,
+        `Diameter (in): ${plDiamRef.current.value}`,
+        `C: ${cRef.current.value}`,
+        `P-discharge (psi): ${pDischargeRef.current.value}`,
+        `Elevation add (ft): ${elevAddRef.current.value}`,
+      ],
+
+      output: calcScreen2Ref.current.innerText,
+      id: uuidv4(),
+    };
+    setSavedCalcs([...savedCalcs, calcInfo]);
   };
 
   return (
@@ -120,67 +163,62 @@ function PressureLoss({
           <div className="calc-screen" ref={calcScreenRef}>
             <span></span>
           </div>
+          <div className="save-wrapper">
+            <button
+              className="save-button"
+              ref={saveButtonRef}
+              onClick={saveCalc}
+            >
+              save this calculation
+            </button>
+          </div>
           <div className="inputs-container">
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    <label htmlFor="q-discharge">Q-discharge (gpm):</label>
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      ref={qDischargeRef}
-                      name="q-discharge"
-                      className="input"
-                      onChange={prepCalculator}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <label htmlFor="PL-length">Length (ft):</label>
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      ref={plLengthRef}
-                      name="PL-length"
-                      className="input"
-                      onChange={prepCalculator}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <label htmlFor="PL-diam">Diameter (in):</label>
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      ref={plDiamRef}
-                      name="PL-diam"
-                      className="input"
-                      onChange={prepCalculator}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <label htmlFor="c">C:</label>
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      ref={cRef}
-                      name="c"
-                      className="input"
-                      onChange={prepCalculator}
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div className="input-wrapper">
+              <label htmlFor="q-discharge">Q-discharge (gpm):</label>
+
+              <input
+                type="number"
+                ref={qDischargeRef}
+                name="q-discharge"
+                className="input"
+                onChange={prepCalculator}
+              />
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="PL-length">Length (ft):</label>
+
+              <input
+                type="number"
+                ref={plLengthRef}
+                name="PL-length"
+                className="input"
+                onChange={prepCalculator}
+              />
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="PL-diam">Diameter (in):</label>
+
+              <input
+                type="number"
+                ref={plDiamRef}
+                name="PL-diam"
+                className="input"
+                onChange={prepCalculator}
+              />
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="c">C:</label>
+
+              <input
+                type="number"
+                ref={cRef}
+                name="c"
+                className="input"
+                onChange={prepCalculator}
+              />
+            </div>
+          </div>
+          <div className="buttons-container">
             <button
               type="button"
               className={`calc-button ${ready ? "" : "inactive"}`}
@@ -204,25 +242,38 @@ function PressureLoss({
           <div className="calc-screen" ref={calcScreen2Ref}>
             <span></span>
           </div>
+          <div className="save-wrapper">
+            <button
+              className="save-button"
+              ref={saveButton2Ref}
+              onClick={saveCalc2}
+            >
+              save this calculation
+            </button>
+          </div>
           <div className="inputs-container">
-            <label htmlFor="p-discharge">P-discharge (psi):</label>
-            <input
-              type="number"
-              ref={pDischargeRef}
-              name="p-discharge"
-              className="input"
-              onChange={prepCalculator}
-            />
-            <br></br>
-            <label htmlFor="elev-add">Elevation add (ft):</label>
-            <input
-              type="number"
-              ref={elevAddRef}
-              name="elev-add"
-              className="input"
-              onChange={prepCalculator}
-            />
-            <br></br>
+            <div className="input-wrapper">
+              <label htmlFor="p-discharge">P-discharge (psi):</label>
+              <input
+                type="number"
+                ref={pDischargeRef}
+                name="p-discharge"
+                className="input"
+                onChange={prepCalculator}
+              />
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="elev-add">Elevation add (ft):</label>
+              <input
+                type="number"
+                ref={elevAddRef}
+                name="elev-add"
+                className="input"
+                onChange={prepCalculator}
+              />
+            </div>
+          </div>
+          <div className="buttons-container">
             <button
               type="button"
               className={`calc-button ${readyCalc2 ? "" : "inactive"}`}
