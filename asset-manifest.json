@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/handy-hydraulics-v2/static/css/main.82fada77.chunk.css",
-    "main.js": "/handy-hydraulics-v2/static/js/main.57d65fe9.chunk.js",
-    "main.js.map": "/handy-hydraulics-v2/static/js/main.57d65fe9.chunk.js.map",
-    "runtime-main.js": "/handy-hydraulics-v2/static/js/runtime-main.61701038.js",
-    "runtime-main.js.map": "/handy-hydraulics-v2/static/js/runtime-main.61701038.js.map",
-    "static/js/2.cd068d77.chunk.js": "/handy-hydraulics-v2/static/js/2.cd068d77.chunk.js",
-    "static/js/2.cd068d77.chunk.js.map": "/handy-hydraulics-v2/static/js/2.cd068d77.chunk.js.map",
-    "static/js/3.f0fcb64b.chunk.js": "/handy-hydraulics-v2/static/js/3.f0fcb64b.chunk.js",
-    "static/js/3.f0fcb64b.chunk.js.map": "/handy-hydraulics-v2/static/js/3.f0fcb64b.chunk.js.map",
+    "main.css": "/handy-hydraulics-v2/static/css/main.21b4f134.chunk.css",
+    "main.js": "/handy-hydraulics-v2/static/js/main.42e96603.chunk.js",
+    "main.js.map": "/handy-hydraulics-v2/static/js/main.42e96603.chunk.js.map",
+    "runtime-main.js": "/handy-hydraulics-v2/static/js/runtime-main.852f4811.js",
+    "runtime-main.js.map": "/handy-hydraulics-v2/static/js/runtime-main.852f4811.js.map",
+    "static/js/2.bed2f4df.chunk.js": "/handy-hydraulics-v2/static/js/2.bed2f4df.chunk.js",
+    "static/js/2.bed2f4df.chunk.js.map": "/handy-hydraulics-v2/static/js/2.bed2f4df.chunk.js.map",
+    "static/js/3.c1dc394f.chunk.js": "/handy-hydraulics-v2/static/js/3.c1dc394f.chunk.js",
+    "static/js/3.c1dc394f.chunk.js.map": "/handy-hydraulics-v2/static/js/3.c1dc394f.chunk.js.map",
     "index.html": "/handy-hydraulics-v2/index.html",
-    "static/css/main.82fada77.chunk.css.map": "/handy-hydraulics-v2/static/css/main.82fada77.chunk.css.map",
-    "static/js/2.cd068d77.chunk.js.LICENSE.txt": "/handy-hydraulics-v2/static/js/2.cd068d77.chunk.js.LICENSE.txt",
+    "static/css/main.21b4f134.chunk.css.map": "/handy-hydraulics-v2/static/css/main.21b4f134.chunk.css.map",
+    "static/js/2.bed2f4df.chunk.js.LICENSE.txt": "/handy-hydraulics-v2/static/js/2.bed2f4df.chunk.js.LICENSE.txt",
     "static/media/x-symbol.f5457199.svg": "/handy-hydraulics-v2/static/media/x-symbol.f5457199.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.61701038.js",
-    "static/js/2.cd068d77.chunk.js",
-    "static/css/main.82fada77.chunk.css",
-    "static/js/main.57d65fe9.chunk.js"
+    "static/js/runtime-main.852f4811.js",
+    "static/js/2.bed2f4df.chunk.js",
+    "static/css/main.21b4f134.chunk.css",
+    "static/js/main.42e96603.chunk.js"
   ]
 }
