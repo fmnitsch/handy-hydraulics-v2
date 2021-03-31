@@ -1,7 +1,17 @@
 .saved-calcs-container {
   padding: 5rem 0rem 0rem 2rem;
-  max-width: 600px;
-
+  max-width: 500px;
+  .saved-options-wrapper {
+    display: flex;
+    justify-content: space-between;
+    .saved-calcs-button {
+      display: none;
+      cursor: pointer;
+    }
+    .visible {
+      display: block;
+    }
+  }
   img {
     height: 8px;
     width: 8px;
