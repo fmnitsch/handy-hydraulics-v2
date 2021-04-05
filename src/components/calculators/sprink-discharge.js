@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 function SprinklerDischarge({
   clear,
   calcScreenRef,
+  calcTextRef,
   ready,
   setReady,
   calcButtonRef,
@@ -38,7 +39,7 @@ function SprinklerDischarge({
         +pressPSIRef.current.value
       );
       calcScreenRef.current.classList.add("active");
-      calcScreenRef.current.innerHTML = `<span>${result.toFixed(1)} gpm</span>`;
+      calcTextRef.current.innerText = `${result.toFixed(1)}`;
       saveButtonRef.current.classList.add("save-active");
     } else {
       return;
@@ -48,13 +49,13 @@ function SprinklerDischarge({
   // Click handler for saving calculation
   const saveCalc = () => {
     const calcInfo = {
-      calculation: "Pipe Volume",
+      calculation: "Sprinkler Discharge",
       inputs: [
         `K: ${kRef.current.value}`,
         `Pressure (psi): ${pressPSIRef.current.value}`,
       ],
 
-      output: calcScreenRef.current.innerText,
+      output: `${calcTextRef.current.innerText} gpm`,
       id: uuidv4(),
     };
     setSavedCalcs([...savedCalcs, calcInfo]);
@@ -62,13 +63,11 @@ function SprinklerDischarge({
 
   return (
     <section className="calculator">
-      <h2>Sprinkler Discharge</h2>
+      <h2>Sprinkler Discharge (gpm)</h2>
       <div className="calc-screen" ref={calcScreenRef}>
-        <span></span>
-      </div>
-      <div className="save-wrapper">
+        <span ref={calcTextRef}></span>
         <button className="save-button" ref={saveButtonRef} onClick={saveCalc}>
-          save this calculation
+          Save
         </button>
       </div>
       <div className="inputs-container">

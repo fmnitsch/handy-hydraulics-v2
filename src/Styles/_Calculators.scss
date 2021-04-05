@@ -1,20 +1,15 @@
 .calc-container {
-  padding: 4rem 0rem 4rem 5rem;
+  padding: 2rem;
   transition: all 0.5s ease;
+
   button {
     font-size: 1rem;
   }
 
-  hr {
-    height: 2px;
-    background-color: rgba(126, 126, 126, 0.7);
-    border: none;
-  }
-
   .toggle-calcs {
     border: none;
-    color: rgb(5, 5, 73);
-    padding: 1rem;
+    color: white;
+    padding: 1rem 1rem 1rem 0rem;
     font-size: 1rem;
     background: rgba(0, 0, 0, 0);
     cursor: pointer;
@@ -22,64 +17,59 @@
       font-weight: bold;
     }
   }
+
   .calculator {
-    min-width: 300px;
-    border-radius: 10px;
-    background-color: #dfdfdf;
+    border-radius: 3px;
+    background-color: #ebf3fa;
     padding: 1.5rem;
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     h2 {
       padding: 1rem 0rem;
     }
-
     .calc-screen {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       background: #545f01;
       width: 100%;
       margin: 1rem auto;
-      padding: 1rem 0.5rem;
+      padding: 1rem;
       min-height: 5.55rem;
       font-size: 3rem;
-      border: 1px solid #a8a8a8;
-      border-radius: 10px;
-    }
-
-    .active {
-      background: #e3ff00;
-    }
-
-    .save-wrapper {
-      display: flex;
-      justify-content: flex-end;
-      height: 1rem;
+      border-radius: 3px;
+      box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
       .save-button {
-        font-size: 0.8rem;
-        color: rgb(5, 5, 73);
+        font-size: 0.9rem;
+        color: black;
         cursor: pointer;
         background: rgba(0, 0, 0, 0);
         border: none;
-        font-weight: lighter;
+        width: 2rem;
         padding: 0;
         margin: 0;
-        width: 10rem;
         display: none;
-        &:hover {
-          font-weight: normal;
-        }
+        box-shadow: none;
+        text-decoration: underline;
       }
       .save-active {
         display: block;
       }
     }
 
+    .active {
+      background: #d2ff04;
+    }
+
     .inputs-container {
-      margin-top: 3rem;
+      margin-top: 2rem;
       display: flex;
       flex-direction: column;
       input {
+        font-family: "IBM Plex Mono", monospace;
         padding: 0.5rem;
-        border-radius: 0.2rem;
+        border-radius: 3px;
         border: none;
-        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: inset 2px 2px 2px #67727d85;
       }
     }
 
@@ -95,49 +85,40 @@
     button {
       padding: 1rem;
       margin: 0rem 1rem 0rem 0rem;
-      background-color: #e3ff00;
-      width: 6.5rem;
-      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0);
+      width: 8rem;
+      border-radius: 3px;
       font-size: 1rem;
       font-weight: bold;
       margin-top: 1rem;
-      border: 1px solid #a8a8a8;
-
-      transition: all 0.5s ease;
+      border: 1px solid #67727d;
+      box-shadow: 2px 2px 3px #67727d85;
+      transition: all 0.3s ease;
       cursor: pointer;
-      &:hover {
-        background-color: #545f01;
-        color: white;
+      &:active {
+        box-shadow: inset 0px 2px 4px #67727d85;
       }
     }
 
     .inactive {
       color: #636363;
-      background-color: #f4ffa4;
       font-weight: lighter;
-      &:hover {
-        background-color: #f4ffa4;
-        color: #636363;
-      }
     }
 
     .clear {
-      background-color: white;
+      background-color: rgba(0, 0, 0, 0);
+      border: none;
       color: #df6961;
       transition: all 0.5s ease;
       font-weight: lighter;
       width: 5rem;
-      &:hover {
-        background-color: #df6961;
-        color: white;
-        font-weight: bolder;
-      }
+      box-shadow: none;
+      text-decoration: underline;
     }
 
     .clear-inactive {
+      color: #999999;
       &:hover {
-        background-color: white;
-        color: #df6961;
         font-weight: lighter;
       }
     }
@@ -178,7 +159,6 @@
 
 @media only screen and (max-width: 650px) {
   .calc-container {
-    padding: 2rem;
     .calculator {
       width: 325px;
       #double-calc-container {

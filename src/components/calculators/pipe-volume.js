@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 function PipeVolume({
   clear,
   calcScreenRef,
+  calcTextRef,
   ready,
   setReady,
   calcButtonRef,
@@ -38,9 +39,7 @@ function PipeVolume({
         pvLengthRef.current.value
       );
       calcScreenRef.current.classList.add("active");
-      calcScreenRef.current.innerHTML = `<span>${result.toFixed(
-        3
-      )} U.S. Gal</span>`;
+      calcTextRef.current.innerText = `${result.toFixed(3)}`;
       saveButtonRef.current.classList.add("save-active");
     } else {
       return;
@@ -56,7 +55,7 @@ function PipeVolume({
         `Length (ft): ${pvLengthRef.current.value}`,
       ],
 
-      output: calcScreenRef.current.innerText,
+      output: `${calcTextRef.current.innerText} US gal`,
       id: uuidv4(),
     };
     setSavedCalcs([...savedCalcs, calcInfo]);
@@ -64,13 +63,11 @@ function PipeVolume({
 
   return (
     <section className="calculator">
-      <h2>Pipe Volume</h2>
+      <h2>Pipe Volume (US gal)</h2>
       <div className="calc-screen" ref={calcScreenRef}>
-        <span></span>
-      </div>
-      <div className="save-wrapper">
+        <span ref={calcTextRef}></span>
         <button className="save-button" ref={saveButtonRef} onClick={saveCalc}>
-          save this calculation
+          Save
         </button>
       </div>
       <div className="inputs-container">

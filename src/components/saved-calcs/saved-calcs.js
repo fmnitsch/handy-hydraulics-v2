@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import xSymbol from "../../img/x-symbol.svg";
 import { saveAs } from "file-saver";
+// Image
+import Edit from "../../img/Edit.svg";
 
 function SavedCalcs({ savedCalcs, setSavedCalcs }) {
   // Refs
@@ -22,13 +24,13 @@ function SavedCalcs({ savedCalcs, setSavedCalcs }) {
   return (
     <div className="saved-calcs-container">
       <div className="saved-options-wrapper">
-        <p>Saved Calculations</p>
-        <p
+        <p>My saved calculations</p>
+        <button
           className={`saved-calcs-button ${savedCalcs[0] ? "visible" : ""}`}
           onClick={downloadCalcs}
         >
-          Download Calculations as .txt
-        </p>
+          <img className="print" src={Edit} alt="" />
+        </button>
       </div>
       <div className="current-saved-calcs" ref={savedCalcsRef}>
         {savedCalcs.map((calc) => {
@@ -38,23 +40,21 @@ function SavedCalcs({ savedCalcs, setSavedCalcs }) {
                 <p>
                   <strong>{calc.calculation}</strong>
                 </p>
+                <div className="close">
+                  <img src={xSymbol} alt="" id={calc.id} onClick={removeCard} />
+                </div>
               </div>
-              <div className="input-display-wrapper">
-                <p>
-                  <strong>Inputs:</strong>
-                </p>
-                {calc.inputs.map((input) => (
-                  <p key={input.toString()}>{input}</p>
-                ))}
-              </div>
-              <div className="output-display-wrapper">
-                <p>
-                  <strong>Calculation:</strong>
-                </p>
-                <p>{calc.output}</p>
-              </div>
-              <div className="close">
-                <img src={xSymbol} alt="" id={calc.id} onClick={removeCard} />
+              <div className="calculation-wrapper">
+                <div className="input-display-wrapper">
+                  <p></p>
+                  {calc.inputs.map((input) => (
+                    <p key={input.toString()}>{input}</p>
+                  ))}
+                </div>
+                <div className="output-display-wrapper">
+                  <p></p>
+                  <p className="answer">= {calc.output}</p>
+                </div>
               </div>
             </div>
           );

@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 function OrificeDischarge({
   clear,
   calcScreenRef,
+  calcTextRef,
   ready,
   setReady,
   calcButtonRef,
@@ -44,7 +45,7 @@ function OrificeDischarge({
         +psiRef.current.value
       );
       calcScreenRef.current.classList.add("active");
-      calcScreenRef.current.innerHTML = `<span>${result} gpm</span>`;
+      calcTextRef.current.innerText = `${result}`;
       saveButtonRef.current.classList.add("save-active");
     } else {
       return;
@@ -61,7 +62,7 @@ function OrificeDischarge({
         `PSI: ${psiRef.current.value}`,
       ],
 
-      output: calcScreenRef.current.innerText,
+      output: `${calcTextRef.current.innerText} gpm`,
       id: uuidv4(),
     };
     setSavedCalcs([...savedCalcs, calcInfo]);
@@ -69,13 +70,11 @@ function OrificeDischarge({
 
   return (
     <section className="calculator">
-      <h2>Orifice Discharge</h2>
+      <h2>Orifice Discharge (gpm)</h2>
       <div className="calc-screen" ref={calcScreenRef}>
-        <span></span>
-      </div>
-      <div className="save-wrapper">
+        <span ref={calcTextRef}></span>
         <button className="save-button" ref={saveButtonRef} onClick={saveCalc}>
-          save this calculation
+          Save
         </button>
       </div>
       <div className="inputs-container">

@@ -2,8 +2,11 @@ import { useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 function PressureLoss({
+  calcDisplay,
   clear,
   calcScreenRef,
+  calcTextRef,
+  calcTextRef2,
   ready,
   setReady,
   calcScreen2Ref,
@@ -31,7 +34,7 @@ function PressureLoss({
   const clearCalc2 = (inputs) => {
     inputs.forEach((field) => (field.current.value = ""));
     calcScreen2Ref.current.classList.remove("active");
-    calcScreen2Ref.current.innerHTML = "<span></span>";
+    calcTextRef2.current.innerText = "";
     saveButton2Ref.current.classList.remove("save-active");
     setReadyCalc2(false);
   };
@@ -87,7 +90,7 @@ function PressureLoss({
         +cRef.current.value
       );
       calcScreenRef.current.classList.add("active");
-      calcScreenRef.current.innerHTML = `<span>${result.toFixed(4)} psi</span>`;
+      calcTextRef.current.innerText = `${result.toFixed(4)}`;
       saveButtonRef.current.classList.add("save-active");
     } else {
       return;
@@ -109,9 +112,7 @@ function PressureLoss({
         +elevAddRef.current.value
       );
       calcScreen2Ref.current.classList.add("active");
-      calcScreen2Ref.current.innerHTML = `<span>${result.toFixed(
-        3
-      )} psi</span>`;
+      calcTextRef2.current.innerText = `${result.toFixed(3)}`;
       saveButton2Ref.current.classList.add("save-active");
     } else {
       return;
@@ -129,47 +130,50 @@ function PressureLoss({
         `C: ${cRef.current.value}`,
       ],
 
-      output: calcScreenRef.current.innerText,
+      output: `${calcTextRef.current.innerText} psi`,
       id: uuidv4(),
     };
     setSavedCalcs([...savedCalcs, calcInfo]);
   };
 
   const saveCalc2 = () => {
+    const fricLoss = frictionLoss(
+      +qDischargeRef.current.value,
+      +plLengthRef.current.value,
+      +plDiamRef.current.value,
+      +cRef.current.value
+    );
     const calcInfo = {
-      calculation: "Pipe Volume",
+      calculation: "Pressure Loss",
       inputs: [
-        `Q-discharge (gpm): ${qDischargeRef.current.value}`,
-        `Length (ft): ${plLengthRef.current.value}`,
-        `Diameter (in): ${plDiamRef.current.value}`,
-        `C: ${cRef.current.value}`,
+        `Friction Loss (psi): ${fricLoss.toFixed(4)}`,
         `P-discharge (psi): ${pDischargeRef.current.value}`,
         `Elevation add (ft): ${elevAddRef.current.value}`,
       ],
 
-      output: calcScreen2Ref.current.innerText,
+      output: `${calcScreen2Ref.current.innerText} psi`,
       id: uuidv4(),
     };
     setSavedCalcs([...savedCalcs, calcInfo]);
   };
 
   return (
-    <section className="calculator">
-      <h2>Pressure Loss</h2>
+    <section
+      className={`calculator ${calcDisplay === "press-loss" ? "double" : ""}`}
+    >
+      <h2>Pressure Loss (psi)</h2>
       <hr></hr>
       <div id="double-calc-container">
         <div id="fric-loss-calc">
           <h2>Friction Loss</h2>
           <div className="calc-screen" ref={calcScreenRef}>
-            <span></span>
-          </div>
-          <div className="save-wrapper">
+            <span ref={calcTextRef}></span>
             <button
               className="save-button"
               ref={saveButtonRef}
               onClick={saveCalc}
             >
-              save this calculation
+              Save
             </button>
           </div>
           <div className="inputs-container">
@@ -238,17 +242,15 @@ function PressureLoss({
         </div>
         <div className="vl"></div>
         <div id="p-supp-calc">
-          <h2>P-Supply</h2>
+          <h2>P-Supply (psi)</h2>
           <div className="calc-screen" ref={calcScreen2Ref}>
-            <span></span>
-          </div>
-          <div className="save-wrapper">
+            <span ref={calcTextRef2}></span>
             <button
               className="save-button"
               ref={saveButton2Ref}
               onClick={saveCalc2}
             >
-              save this calculation
+              Save
             </button>
           </div>
           <div className="inputs-container">

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon/Edit</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Desktop" transform="translate(-759.000000, -182.000000)" stroke="#FFFFFF">
+            <g id="Saved-calculations" transform="translate(522.789474, 159.000000)">
+                <g id="Path" transform="translate(237.210526, 24.000000)">
+                    <path d="M6.26201452,1.47597096 L1.39155878,1.47597096 C0.623022089,1.47597096 -5.32907052e-15,2.09899304 -5.32907052e-15,2.86752974 L-5.32907052e-15,12.6084412 C-5.32907052e-15,13.3769779 0.623022089,14 1.39155878,14 L11.1324703,14 C11.901007,14 12.524029,13.3769779 12.524029,12.6084412 L12.524029,7.73798548"></path>
+                    <path d="M11.48036,0.432301868 C12.0567625,-0.144100631 12.9912956,-0.144100622 13.5676981,0.43230189 C14.1441006,1.0087044 14.1441006,1.94323752 13.5676981,2.51964004 L6.95779391,9.12954426 L4.17467635,9.82532365 L4.87045574,7.04220609 L11.48036,0.432301868 Z"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

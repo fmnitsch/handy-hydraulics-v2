@@ -12,6 +12,8 @@ function App() {
   const [savedCalcs, setSavedCalcs] = useState([]);
 
   //Refs
+  const calcTextRef = useRef(null);
+  const calcTextRef2 = useRef(null);
   const calcScreenRef = useRef(null);
   const calcScreen2Ref = useRef(null);
   const calcButtonRef = useRef(null);
@@ -36,6 +38,8 @@ function App() {
           calcDisplay={calcDisplay}
           calcScreenRef={calcScreenRef}
           calcScreen2Ref={calcScreen2Ref}
+          calcTextRef={calcTextRef}
+          calcTextRef2={calcTextRef2}
           selector={selector}
           setSelector={setSelector}
           calcButtonRef={calcButtonRef}

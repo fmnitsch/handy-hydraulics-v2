@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 function ElevationPressure({
   clear,
   calcScreenRef,
+  calcTextRef,
   ready,
   setReady,
   calcButtonRef,
@@ -30,7 +31,7 @@ function ElevationPressure({
     if (ready) {
       let result = elevationPressure(+heightRef.current.value);
       calcScreenRef.current.classList.add("active");
-      calcScreenRef.current.innerHTML = `<span>${result.toFixed(3)} psi</span>`;
+      calcTextRef.current.innerText = `${result.toFixed(3)}`;
       saveButtonRef.current.classList.add("save-active");
     } else {
       return;
@@ -42,7 +43,7 @@ function ElevationPressure({
     const calcInfo = {
       calculation: "Elevation Pressure",
       inputs: [`Height (ft): ${heightRef.current.value}`],
-      output: calcScreenRef.current.innerText,
+      output: `${calcTextRef.current.innerText} psi`,
       id: uuidv4(),
     };
     setSavedCalcs([...savedCalcs, calcInfo]);
@@ -50,15 +51,14 @@ function ElevationPressure({
 
   return (
     <section className="calculator">
-      <h2>Elevation Pressure</h2>
+      <h2>Elevation Pressure (psi)</h2>
       <div className="calc-screen" ref={calcScreenRef}>
-        <span></span>
-      </div>
-      <div className="save-wrapper">
+        <span ref={calcTextRef}></span>
         <button className="save-button" ref={saveButtonRef} onClick={saveCalc}>
-          save this calculation
+          Save
         </button>
       </div>
+
       <div className="inputs-container">
         <div className="input-wrapper">
           <label htmlFor="height">Height (ft):</label>

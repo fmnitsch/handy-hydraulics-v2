@@ -11,6 +11,8 @@ function CalcContainer({
   calcDisplay,
   calcScreenRef,
   calcScreen2Ref,
+  calcTextRef,
+  calcTextRef2,
   selector,
   setSelector,
   calcButtonRef,
@@ -27,7 +29,7 @@ function CalcContainer({
   const clear = (inputs) => {
     inputs.forEach((field) => (field.current.value = ""));
     calcScreenRef.current.classList.remove("active");
-    calcScreenRef.current.innerHTML = "<span></span>";
+    calcTextRef.current.innerText = "";
     saveButtonRef.current.classList.remove("save-active");
     setReady(false);
   };
@@ -45,12 +47,13 @@ function CalcContainer({
   return (
     <div className={`calc-container ${selector ? "selector-active" : ""}`}>
       <button className="toggle-calcs" onClick={selectorToggle}>
-        All calculators
+        See all calculators
       </button>
       {calcDisplay === "elev-press" && (
         <ElevationPressure
           clear={clear}
           calcScreenRef={calcScreenRef}
+          calcTextRef={calcTextRef}
           ready={ready}
           setReady={setReady}
           calcButtonRef={calcButtonRef}
@@ -63,6 +66,7 @@ function CalcContainer({
         <OrificeDischarge
           clear={clear}
           calcScreenRef={calcScreenRef}
+          calcTextRef={calcTextRef}
           ready={ready}
           setReady={setReady}
           calcButtonRef={calcButtonRef}
@@ -76,6 +80,7 @@ function CalcContainer({
         <PipeVolume
           clear={clear}
           calcScreenRef={calcScreenRef}
+          calcTextRef={calcTextRef}
           ready={ready}
           setReady={setReady}
           calcButtonRef={calcButtonRef}
@@ -89,6 +94,7 @@ function CalcContainer({
         <SprinklerDischarge
           clear={clear}
           calcScreenRef={calcScreenRef}
+          calcTextRef={calcTextRef}
           ready={ready}
           setReady={setReady}
           calcButtonRef={calcButtonRef}
@@ -100,11 +106,14 @@ function CalcContainer({
 
       {calcDisplay === "press-loss" && (
         <PressureLoss
+          calcDisplay={calcDisplay}
           clear={clear}
           calcScreenRef={calcScreenRef}
+          calcTextRef={calcTextRef}
           ready={ready}
           setReady={setReady}
           calcScreen2Ref={calcScreen2Ref}
+          calcTextRef2={calcTextRef2}
           calcButtonRef={calcButtonRef}
           calcButton2Ref={calcButton2Ref}
           saveButtonRef={saveButtonRef}
@@ -118,6 +127,7 @@ function CalcContainer({
         <ElevationPressure
           clear={clear}
           calcScreenRef={calcScreenRef}
+          calcTextRef={calcTextRef}
           ready={ready}
           setReady={setReady}
           calcButtonRef={calcButtonRef}
