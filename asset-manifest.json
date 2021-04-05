@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/handy-hydraulics-v2/static/css/main.7d20706f.chunk.css",
-    "main.js": "/handy-hydraulics-v2/static/js/main.752dc7dc.chunk.js",
-    "main.js.map": "/handy-hydraulics-v2/static/js/main.752dc7dc.chunk.js.map",
+    "main.css": "/handy-hydraulics-v2/static/css/main.879f8bc9.chunk.css",
+    "main.js": "/handy-hydraulics-v2/static/js/main.a7b16960.chunk.js",
+    "main.js.map": "/handy-hydraulics-v2/static/js/main.a7b16960.chunk.js.map",
     "runtime-main.js": "/handy-hydraulics-v2/static/js/runtime-main.588b1f98.js",
     "runtime-main.js.map": "/handy-hydraulics-v2/static/js/runtime-main.588b1f98.js.map",
     "static/js/2.051327f3.chunk.js": "/handy-hydraulics-v2/static/js/2.051327f3.chunk.js",
@@ -10,14 +10,15 @@
     "static/js/3.8153d61a.chunk.js": "/handy-hydraulics-v2/static/js/3.8153d61a.chunk.js",
     "static/js/3.8153d61a.chunk.js.map": "/handy-hydraulics-v2/static/js/3.8153d61a.chunk.js.map",
     "index.html": "/handy-hydraulics-v2/index.html",
-    "static/css/main.7d20706f.chunk.css.map": "/handy-hydraulics-v2/static/css/main.7d20706f.chunk.css.map",
+    "static/css/main.879f8bc9.chunk.css.map": "/handy-hydraulics-v2/static/css/main.879f8bc9.chunk.css.map",
     "static/js/2.051327f3.chunk.js.LICENSE.txt": "/handy-hydraulics-v2/static/js/2.051327f3.chunk.js.LICENSE.txt",
+    "static/media/Edit.24f06236.svg": "/handy-hydraulics-v2/static/media/Edit.24f06236.svg",
     "static/media/x-symbol.f5457199.svg": "/handy-hydraulics-v2/static/media/x-symbol.f5457199.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.588b1f98.js",
     "static/js/2.051327f3.chunk.js",
-    "static/css/main.7d20706f.chunk.css",
-    "static/js/main.752dc7dc.chunk.js"
+    "static/css/main.879f8bc9.chunk.css",
+    "static/js/main.a7b16960.chunk.js"
   ]
 }
