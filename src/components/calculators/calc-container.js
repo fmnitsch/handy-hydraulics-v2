@@ -45,7 +45,7 @@ function CalcContainer({
   }, [calcDisplay]);
 
   return (
-    <div className={`calc-container ${selector ? "selector-active" : ""}`}>
+    <div className={`calc-container`}>
       <button className="toggle-calcs" onClick={selectorToggle}>
         See all calculators
       </button>

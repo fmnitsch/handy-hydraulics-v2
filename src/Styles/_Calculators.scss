@@ -1,6 +1,5 @@
 .calc-container {
   padding: 2rem;
-  transition: all 0.5s ease;
 
   button {
     font-size: 1rem;
@@ -19,6 +18,7 @@
   }
 
   .calculator {
+    min-width: 300px;
     border-radius: 3px;
     background-color: #ebf3fa;
     padding: 1.5rem;
@@ -34,7 +34,7 @@
       width: 100%;
       margin: 1rem auto;
       padding: 1rem;
-      min-height: 5.55rem;
+      min-height: 6rem;
       font-size: 3rem;
       border-radius: 3px;
       box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
@@ -160,7 +160,6 @@
 @media only screen and (max-width: 650px) {
   .calc-container {
     .calculator {
-      width: 325px;
       #double-calc-container {
         display: block;
       }
@@ -169,11 +168,6 @@
       }
       #p-supp-calc {
         border: none;
-      }
-    }
-    .inputs-container {
-      input {
-        width: 8.8rem;
       }
     }
   }

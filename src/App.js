@@ -8,7 +8,7 @@ import SavedCalcs from "./Components/saved-calcs/saved-calcs";
 function App() {
   //State
   const [calcDisplay, setCalcDisplay] = useState(null);
-  const [selector, setSelector] = useState(true);
+  const [selector, setSelector] = useState(false);
   const [savedCalcs, setSavedCalcs] = useState([]);
 
   //Refs
@@ -25,7 +25,11 @@ function App() {
     <div id="App">
       <div className="title">
         <h1>Handy Hydraulics</h1>
-        <p>A fire sprinkler hydraulics calculator</p>
+        <div className="tagline">
+          <p>
+            <i>The go-to resource for fire protection engineers</i>
+          </p>
+        </div>
       </div>
       <div className="calculators">
         <Selector
@@ -34,22 +38,24 @@ function App() {
           calcDisplay={calcDisplay}
           setCalcDisplay={setCalcDisplay}
         />
-        <CalcContainer
-          calcDisplay={calcDisplay}
-          calcScreenRef={calcScreenRef}
-          calcScreen2Ref={calcScreen2Ref}
-          calcTextRef={calcTextRef}
-          calcTextRef2={calcTextRef2}
-          selector={selector}
-          setSelector={setSelector}
-          calcButtonRef={calcButtonRef}
-          calcButton2Ref={calcButton2Ref}
-          saveButtonRef={saveButtonRef}
-          saveButton2Ref={saveButton2Ref}
-          savedCalcs={savedCalcs}
-          setSavedCalcs={setSavedCalcs}
-        />
-        <SavedCalcs savedCalcs={savedCalcs} setSavedCalcs={setSavedCalcs} />
+        <div className={`calcs-wrapper ${selector ? "selector-active" : ""}`}>
+          <CalcContainer
+            calcDisplay={calcDisplay}
+            calcScreenRef={calcScreenRef}
+            calcScreen2Ref={calcScreen2Ref}
+            calcTextRef={calcTextRef}
+            calcTextRef2={calcTextRef2}
+            selector={selector}
+            setSelector={setSelector}
+            calcButtonRef={calcButtonRef}
+            calcButton2Ref={calcButton2Ref}
+            saveButtonRef={saveButtonRef}
+            saveButton2Ref={saveButton2Ref}
+            savedCalcs={savedCalcs}
+            setSavedCalcs={setSavedCalcs}
+          />
+          <SavedCalcs savedCalcs={savedCalcs} setSavedCalcs={setSavedCalcs} />
+        </div>
       </div>
     </div>
   );
